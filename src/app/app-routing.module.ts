@@ -43,6 +43,11 @@ const routes: Routes = [
           import('./pages/charts/charts.module').then((m) => m.ChartsModule),
       },
       {
+        path: 'cinema',
+        loadChildren: () =>
+          import('./pages/cinema/cinema.module').then((m) => m.CinemaModule),
+      },
+      {
         path: 'apps',
         loadChildren: () =>
           import('./pages/apps/apps.module').then((m) => m.AppsModule),

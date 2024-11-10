@@ -2,6 +2,14 @@ import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
   {
+    navCap: 'Cinema',
+  },
+  {
+    displayName: 'Catalog',
+    iconName: 'chart-pie',
+    route: '/cinema/movie/catalog',
+  },
+  {
     navCap: 'Home',
   },
   {
