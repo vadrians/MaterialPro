@@ -6,7 +6,7 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'Catalog',
-    iconName: 'chart-pie',
+    iconName: 'movie',
     route: '/cinema/movie/catalog',
   },
   {
