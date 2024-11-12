@@ -9,12 +9,15 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { TitleCasePipe } from '@angular/common';
 import { Movie } from 'src/lib/movie.types';
 import { MOVIES_CATALOG } from 'src/lib/movies.catalog.json';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @Component({
   selector: 'app-movie-catalog',
   standalone: true,
-  imports: [MatCardModule, MatTableModule, MatPaginatorModule, TitleCasePipe],
+  imports: [MatCardModule, MatTableModule, MatPaginatorModule, TitleCasePipe,MatFormFieldModule,   // Доданий модуль MatFormFieldModule
+    MatInputModule],
   templateUrl: './movie-catalog.component.html',
   styleUrl: './movie-catalog.component.scss',
 })
@@ -45,5 +48,9 @@ export class MovieCatalogComponent implements OnInit {
     /* this.movieService.getMovies().subscribe((movies) => {
       console.log(movies);
     }); -----> this is what you need to connecting to your API */
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

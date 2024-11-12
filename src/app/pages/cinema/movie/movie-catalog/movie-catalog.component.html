@@ -1,85 +1,95 @@
 <mat-card class="cardWithShadow">
-    <mat-card-header>
-      <mat-card-title>Pagination Table</mat-card-title>
-      <mat-card-subtitle class="mat-body-1">get nore item with pagination</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="table-responsive m-t-30">
-        <mat-table #table [dataSource]="dataSource">
-          <!-- Overview Column -->
-          <ng-container matColumnDef="overview">
-            <mat-header-cell
-              *matHeaderCellDef
-              class="f-w-600 mat-subtitle-1 f-s-14 p-l-0"
-            >
-              Overview
-            </mat-header-cell>
-            <mat-cell class="p-16 p-l-0" *matCellDef="let element">
-              <div class="d-flex align-items-center">
-                <img
-                  [src]="element.imagePath"
-                  alt="users"
-                  width="40"
-                  class="rounded-circle"
-                />
-                <div class="m-l-16">
-                  <h6 class="mat-subtitle-1 f-s-14 f-w-600">
-                    {{ element.title }}
-                  </h6>
-                  <span class="mat-body-1 f-s-12">
-                    {{ element.director }}
-                  </span>
-                </div>
-              </div>
-            </mat-cell>
-          </ng-container>
-  
-          <!-- Actros Column -->
-          <ng-container matColumnDef="actros">
-            <mat-header-cell
-              *matHeaderCellDef
-              class="f-w-600 mat-subtitle-1 f-s-14"
-            >
-              Actors
-            </mat-header-cell>
-            <mat-cell class="p-16" *matCellDef="let element" class="mat-body-1">
-              {{ element.actors }}</mat-cell
-            >
-          </ng-container>
-  
-          <!-- Rating Column -->
-          <ng-container matColumnDef="rating">
-            <mat-header-cell
-              *matHeaderCellDef
-              class="f-w-600 mat-subtitle-1 f-s-14"
-            >
-              Rating
-            </mat-header-cell>
-            <mat-cell class="p-16" *matCellDef="let element">{{ element.rating }}</mat-cell>
-          </ng-container>
-  
-          <!-- Duration Column -->
-          <ng-container matColumnDef="duration">
-            <mat-header-cell
-              *matHeaderCellDef
-              class="f-w-600 mat-subtitle-1 f-s-14 text-right p-r-0"
-            >
-              Duration
-            </mat-header-cell>
-            <mat-cell
-              class="p-16"
-              *matCellDef="let element"
-            >
-              {{ element.duration }}</mat-cell
-            >
-          </ng-container>
-  
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-        </mat-table>
-  
-        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
-        </mat-paginator>
+  <mat-card-header>
+    <mat-card-title>Pagination Table</mat-card-title>
+    <mat-card-subtitle class="mat-body-1">get nore item with pagination</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <br>
+    <div class="row justify-content-between m-b-8">
+      <div class="col-sm-4 col-lg-3 ml-auto">
+        <mat-form-field appearance="outline" class="w-100 hide-hint">
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Search here"
+            #input
+          />
+        </mat-form-field>
       </div>
-    </mat-card-content>
-  </mat-card>
+    </div>
+
+    <div class="table-responsive m-t-30">
+      <mat-table #table [dataSource]="dataSource">
+        <!-- Overview Column -->
+        <ng-container matColumnDef="overview">
+          <mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14 p-l-0">
+            Overview
+          </mat-header-cell>
+          <mat-cell class="p-16 p-l-0" *matCellDef="let element">
+            <div class="d-flex align-items-center">
+              <img
+                [src]="element.imagePath"
+                alt="users"
+                width="40"
+                class="rounded-circle"
+              />
+              <div class="m-l-16">
+                <h6 class="mat-subtitle-1 f-s-14 f-w-600">{{ element.title }}</h6>
+                <span class="mat-body-1 f-s-12">{{ element.director }}</span>
+              </div>
+            </div>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Actros Column -->
+        <ng-container matColumnDef="actros">
+          <mat-header-cell
+            *matHeaderCellDef
+            class="f-w-600 mat-subtitle-1 f-s-14"
+          >
+            Actors
+          </mat-header-cell>
+          <mat-cell class="p-16" *matCellDef="let element" class="mat-body-1">
+            <div class="actors-text">
+              {{ element.actors }}
+            </div>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Rating Column -->
+        <ng-container matColumnDef="rating">
+          <mat-header-cell
+            *matHeaderCellDef
+            class="f-w-600 mat-subtitle-1 f-s-14"
+          >
+            Rating
+          </mat-header-cell>
+          <mat-cell class="p-16" *matCellDef="let element">{{ element.rating }}</mat-cell>
+        </ng-container>
+
+        <!-- Duration Column -->
+        <ng-container matColumnDef="duration">
+          <mat-header-cell
+            *matHeaderCellDef
+            class="f-w-600 mat-subtitle-1 f-s-14 text-right p-r-0"
+          >
+            Duration
+          </mat-header-cell>
+          <mat-cell
+            class="p-16"
+            *matCellDef="let element"
+          >
+            {{ element.duration }}</mat-cell
+          >
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
