@@ -11,13 +11,15 @@ import { Movie } from 'src/lib/movie.types';
 import { MOVIES_CATALOG } from 'src/lib/movies.catalog.json';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSort } from '@angular/material/sort';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @Component({
   selector: 'app-movie-catalog',
   standalone: true,
   imports: [MatCardModule, MatTableModule, MatPaginatorModule, TitleCasePipe,MatFormFieldModule,   // Доданий модуль MatFormFieldModule
-    MatInputModule],
+    MatInputModule,MatSort,MatSortModule],
   templateUrl: './movie-catalog.component.html',
   styleUrl: './movie-catalog.component.scss',
 })
@@ -34,15 +36,20 @@ export class MovieCatalogComponent implements OnInit {
         : ['overview', 'actros', 'rating', 'duration'];
     });
   }
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator =
-    Object.create(null);
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
+  @ViewChild(MatSort, { static: true }) sort: MatSort = Object.create(null);
 
   /**
    * Set the paginator after the view init since this component will
    * be able to query its view for the initialized paginator.
    */
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+    if (this.paginator) {
+      this.dataSource.paginator = this.paginator;
+    }
+    if (this.sort) {
+      this.dataSource.sort = this.sort;
+    }
   }
   ngOnInit() {
     /* this.movieService.getMovies().subscribe((movies) => {

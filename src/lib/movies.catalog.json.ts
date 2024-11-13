@@ -8,7 +8,7 @@ export const MOVIES_CATALOG = [
 	  "duration": 180,
 	  "rating": 8.6,
 	  "actors": ["Cillian Murphy", "Emily Blunt", "Matt Damon"],
-	  "coverImage": "https://m.media-amazon.com/images/M/MV5BMTk5NTg5MzQzOV5BMl5BanBnXkFtZTgwMzQ1Nzg2NzE@._V1_.jpg",
+	  "coverImage": "assets/images/moviePictures/oppenheimer.jpg", 
 	  "showtimes": [
 		{ "day": "Friday", "times": ["18:00", "21:00"] },
 		{ "day": "Saturday", "times": ["15:00", "18:00", "21:00"] }
@@ -23,7 +23,7 @@ export const MOVIES_CATALOG = [
 	  "duration": 114,
 	  "rating": 7.2,
 	  "actors": ["Margot Robbie", "Ryan Gosling", "America Ferrera"],
-	  "coverImage": "https://m.media-amazon.com/images/M/MV5BM2JiNjE4NjgtNmRmMC00M2YxLWFkZDktNjJlMjJjZDJlZWM3XkEyXkFqcGdeQXVyMTY5MDEyOA@@._V1_FMjpg_UX1000_.jpg",
+	  "coverImage": "assets/images/moviePictures/barbie.jpg",
 	  "showtimes": [
 		{ "day": "Thursday", "times": ["19:00"] },
 		{ "day": "Saturday", "times": ["14:00", "17:00", "20:00"] }
@@ -38,7 +38,7 @@ export const MOVIES_CATALOG = [
 	  "duration": 140,
 	  "rating": 8.9,
 	  "actors": ["Shameik Moore", "Hailee Steinfeld", "Oscar Isaac"],
-	  "coverImage": "https://m.media-amazon.com/images/M/MV5BMjAzMTA4MzA4OF5BMl5BanBnXkFtZTgwNzE1NTUxNzE@._V1_.jpg",
+	  "coverImage": "assets/images/moviePictures/spider.jpg",
 	  "showtimes": [
 		{ "day": "Friday", "times": ["16:00", "19:00"] },
 		{ "day": "Sunday", "times": ["13:00", "16:00", "19:00"] }
@@ -53,7 +53,7 @@ export const MOVIES_CATALOG = [
 	  "duration": 206,
 	  "rating": 7.8,
 	  "actors": ["Leonardo DiCaprio", "Robert De Niro", "Lily Gladstone"],
-	  "coverImage": "https://m.media-amazon.com/images/M/MV5BMjE4NDMwNTUzOF5BMl5BanBnXkFtZTgwOTMwNDA4NzE@._V1_FMjpg_UX1000_.jpg",
+	  "coverImage": "assets/images/moviePictures/killer.jpg",
 	  "showtimes": [
 		{ "day": "Wednesday", "times": ["17:00", "20:30"] },
 		{ "day": "Saturday", "times": ["14:00", "18:00"] }
@@ -68,7 +68,7 @@ export const MOVIES_CATALOG = [
 	  "duration": 106,
 	  "rating": 8.0,
 	  "actors": ["Greta Lee", "Teo Yoo", "John Magaro"],
-	  "coverImage": "https://m.media-amazon.com/images/M/MV5BMjExMTJmMDItNTBjMC00M2Y0LTg0Y2ItNzViMmNmODAyMGNmXkEyXkFqcGdeQXVyMjY0MTE3NjY@._V1_FMjpg_UX1000_.jpg",
+	  "coverImage": "assets/images/moviePictures/pastLives.jpg",
 	  "showtimes": [
 		{ "day": "Monday", "times": ["15:00", "18:00"] },
 		{ "day": "Thursday", "times": ["16:00", "19:00"] }
