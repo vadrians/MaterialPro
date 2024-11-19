@@ -18,14 +18,14 @@ import { MatSortModule } from '@angular/material/sort';
 @Component({
   selector: 'app-movie-catalog',
   standalone: true,
-  imports: [MatCardModule, MatTableModule, MatPaginatorModule, TitleCasePipe,MatFormFieldModule,   // Доданий модуль MatFormFieldModule
+  imports: [MatCardModule, MatTableModule, MatPaginatorModule, TitleCasePipe,MatFormFieldModule,
     MatInputModule,MatSort,MatSortModule],
   templateUrl: './movie-catalog.component.html',
   styleUrl: './movie-catalog.component.scss',
 })
 export class MovieCatalogComponent implements OnInit {
-  displayedColumns = ['overview', 'actros', 'rating', 'duration'];
-  dataSource = new MatTableDataSource<Movie>(MOVIES_CATALOG);
+  displayedColumns = ['overview', 'actors', 'rating', 'duration'];
+  dataSource = new MatTableDataSource<Movie>([]);
   constructor(
     private readonly movieService: MovieService,
     breakpointObserver: BreakpointObserver
@@ -52,9 +52,9 @@ export class MovieCatalogComponent implements OnInit {
     }
   }
   ngOnInit() {
-    /* this.movieService.getMovies().subscribe((movies) => {
-      console.log(movies);
-    }); -----> this is what you need to connecting to your API */
+    this.movieService.getMovies().subscribe((movies: Movie[]) => {
+      this.dataSource.data = movies; 
+    });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

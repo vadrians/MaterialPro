@@ -7,9 +7,28 @@ import { Movie } from './movie.types';
   providedIn: 'root',
 })
 export class MovieService {
-  constructor(private readonly http: HttpClient) {}
 
+  private usersUrl: string;
+
+  constructor(private readonly http: HttpClient) {
+    this.usersUrl = 'http://localhost:8080/movies';
+  }
+  
+
+  
   getMovies(): Observable<Movie[]> {
-    return this.http.get<Movie[]>('http"//localhost:3000/movies');
+    return this.http.get<Movie[]>(this.usersUrl);
+  }
+
+  addMovie(movie: Movie): Observable<Movie> {
+    return this.http.post<Movie>(this.usersUrl, movie);
+  }
+  
+  updateMovie(id: number, movie: Movie): Observable<Movie> {
+    return this.http.put<Movie>(`${this.usersUrl}/${id}`, movie);
+  }
+  
+  deleteMovie(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.usersUrl}/${id}`);
   }
 }
