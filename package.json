@@ -26,6 +26,7 @@
     "angular-calendar": "^0.31.0",
     "angular-tabler-icons": "^2.7.0",
     "apexcharts": "^3.35.3",
+    "bootstrap": "^5.3.3",
     "date-fns": "^2.29.3",
     "devexpress-diagram": "^2.1.57",
     "devextreme": "23.1.2-beta",

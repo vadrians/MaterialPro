@@ -5,9 +5,10 @@
   </mat-card-header>
 
   <mat-card-content>
-    <br>
+    
+    <!-- Filter -->
     <div class="row justify-content-between m-b-8">
-      <div class="col-sm-4 col-lg-3 ml-auto">
+      <div class="col-sm-4 col-lg-3 ml-auto mt-4">
         <mat-form-field appearance="outline" class="w-100 hide-hint">
           <input matInput (keyup)="applyFilter($event)" placeholder="Search here" #input />
         </mat-form-field>
@@ -19,12 +20,12 @@
 
         <!-- Overview Column -->
         <ng-container matColumnDef="overview">
-          <mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14 p-l-0">
+          <mat-header-cell *matHeaderCellDef class="overview-column f-w-600 mat-subtitle-1 f-s-14 p-l-0">
             Overview
           </mat-header-cell>
-          <mat-cell class="p-16 p-l-0" *matCellDef="let element">
+          <mat-cell class="overview-column p-16 p-l-0" *matCellDef="let element">
             <div class="d-flex align-items-center">
-              <img [src]="element.coverImage" alt="movie.cover" width="40" class="rounded-circle" />
+              <img [src]="element.coverImage" alt="movie.cover" width="60" class="rounded-circle" />
               <div class="m-l-16">
                 <h6 class="mat-subtitle-1 f-s-14 f-w-600">{{ element.title }}</h6>
                 <span class="mat-body-1 f-s-12">{{ element.director }}</span>
@@ -33,12 +34,12 @@
           </mat-cell>
         </ng-container>
 
-        <!-- Actros Column -->
-        <ng-container matColumnDef="actros">
-          <mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 mat-subtitle-1 f-s-14">
+        <!-- Actors Column -->
+        <ng-container matColumnDef="actors">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by actors" class="actors-column f-w-600 mat-subtitle-1 f-s-14">
             Actors
           </mat-header-cell>
-          <mat-cell class="p-16 mat-body-1" *matCellDef="let element">
+          <mat-cell class="actors-column p-16 mat-body-1" *matCellDef="let element">
             <div class="actors-text">
               {{ element.actors }}
             </div>
@@ -47,26 +48,30 @@
 
         <!-- Rating Column -->
         <ng-container matColumnDef="rating">
-          <mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 mat-subtitle-1 f-s-14">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by rating" class="rating-column f-w-600 mat-subtitle-1 f-s-14">
             Rating
           </mat-header-cell>
-          <mat-cell class="p-16" *matCellDef="let element">{{ element.rating }}</mat-cell>
+          <mat-cell class="rating-column p-16" *matCellDef="let element">{{ element.rating }}</mat-cell>
         </ng-container>
 
         <!-- Duration Column -->
         <ng-container matColumnDef="duration">
-          <mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 mat-subtitle-1 f-s-14 text-right p-r-0">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by duration" class="duration-column f-w-600 mat-subtitle-1 f-s-14 text-right p-r-0">
             Duration
           </mat-header-cell>
-          <mat-cell class="p-16" *matCellDef="let element">
-            {{ element.duration }}
+          <mat-cell class="duration-column p-16" *matCellDef="let element">
+            {{ element.duration }} min
           </mat-cell>
         </ng-container>
+
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
+
+        <!-- Pagination -->
       <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
       </mat-paginator>
+
     </div>
   </mat-card-content>
 </mat-card>

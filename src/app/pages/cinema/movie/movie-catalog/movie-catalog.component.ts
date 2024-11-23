@@ -1,14 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MovieService } from 'src/lib/movie.service';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { TitleCasePipe } from '@angular/common';
 import { Movie } from 'src/lib/movie.types';
-import { MOVIES_CATALOG } from 'src/lib/movies.catalog.json';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSort } from '@angular/material/sort';
@@ -26,16 +25,18 @@ import { MatSortModule } from '@angular/material/sort';
 export class MovieCatalogComponent implements OnInit {
   displayedColumns = ['overview', 'actors', 'rating', 'duration'];
   dataSource = new MatTableDataSource<Movie>([]);
+
   constructor(
     private readonly movieService: MovieService,
     breakpointObserver: BreakpointObserver
   ) {
     breakpointObserver.observe(['(max-width: 600px)']).subscribe((result) => {
       this.displayedColumns = result.matches
-        ? ['overview', 'actros', 'rating', 'duration']
-        : ['overview', 'actros', 'rating', 'duration'];
+        ? ['overview', 'rating']
+        : ['overview', 'actors', 'rating', 'duration'];
     });
   }
+  
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
   @ViewChild(MatSort, { static: true }) sort: MatSort = Object.create(null);
 
