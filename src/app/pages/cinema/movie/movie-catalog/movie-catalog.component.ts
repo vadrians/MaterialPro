@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MovieService } from 'src/lib/movie.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
@@ -12,7 +12,30 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSort } from '@angular/material/sort';
 import { MatSortModule } from '@angular/material/sort';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { UntypedFormGroup } from '@angular/forms';
 
+
+@Component({
+  selector: 'app-movie-dialog',
+  templateUrl: './movie-dialog.component.html',
+  styleUrl: './movie-dialog.component.scss',
+})
+export class MovieDialogComponent {
+  options!: UntypedFormGroup;
+  stars: number[] = new Array(5); // Масив для 5 зірок
+  calculatedStar: number;
+  filledStar: number;
+  halfStar: number;
+
+  constructor(
+    public dialogRef: MatDialogRef<MovieDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+  ) {this.calculatedStar = data.rating/2;
+    this.filledStar = Math.floor(this.calculatedStar);
+    this.halfStar = this.calculatedStar-this.filledStar >= 0.5 ? 1 : 0;
+  }
+}
 
 @Component({
   selector: 'app-movie-catalog',
@@ -25,9 +48,11 @@ import { MatSortModule } from '@angular/material/sort';
 export class MovieCatalogComponent implements OnInit {
   displayedColumns = ['overview', 'actors', 'rating', 'duration'];
   dataSource = new MatTableDataSource<Movie>([]);
+  dialogRef: MatDialogRef<MovieDialogComponent> | null = null;
 
   constructor(
     private readonly movieService: MovieService,
+    private dialog: MatDialog,
     breakpointObserver: BreakpointObserver
   ) {
     breakpointObserver.observe(['(max-width: 600px)']).subscribe((result) => {
@@ -40,10 +65,6 @@ export class MovieCatalogComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
   @ViewChild(MatSort, { static: true }) sort: MatSort = Object.create(null);
 
-  /**
-   * Set the paginator after the view init since this component will
-   * be able to query its view for the initialized paginator.
-   */
   ngAfterViewInit(): void {
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
@@ -60,5 +81,13 @@ export class MovieCatalogComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openMovieDetails(movie: Movie): void {
+    const dialogConfig = new MatDialogConfig(); 
+    dialogConfig.width = '500px'; 
+    dialogConfig.data = movie; 
+
+    this.dialogRef = this.dialog.open(MovieDialogComponent, dialogConfig); 
   }
 }

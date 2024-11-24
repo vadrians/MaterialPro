@@ -9,6 +9,9 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
 import { CinemaRoutes } from './cinema.routing';
 import { MaterialModule } from 'src/app/material.module';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { MovieDialogComponent } from './movie/movie-catalog/movie-catalog.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,8 +21,13 @@ import { MaterialModule } from 'src/app/material.module';
     ReactiveFormsModule,
     NgApexchartsModule,
     TablerIconsModule.pick(TablerIcons),
+    MatDialogModule, 
   ],
-  exports: [TablerIconsModule],
-  declarations: [],
+  declarations: [
+    MovieDialogComponent, 
+  ],
+  exports: [
+    TablerIconsModule,
+  ],
 })
 export class CinemaModule {}

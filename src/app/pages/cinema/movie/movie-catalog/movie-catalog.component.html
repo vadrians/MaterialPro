@@ -27,7 +27,11 @@
             <div class="d-flex align-items-center">
               <img [src]="element.coverImage" alt="movie.cover" width="60" class="rounded-circle" />
               <div class="m-l-16">
-                <h6 class="mat-subtitle-1 f-s-14 f-w-600">{{ element.title }}</h6>
+                <h6 
+          class="mat-subtitle-1 f-s-14 f-w-600 cursor-pointer" 
+          (click)="openMovieDetails(element)">
+          {{ element.title }}
+        </h6>
                 <span class="mat-body-1 f-s-12">{{ element.director }}</span>
               </div>
             </div>

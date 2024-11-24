@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+
+<div class="d-flex">
+  <img [src]="data.coverImage" alt="movie.cover" width="100" class="movie-image"/>
+  <mat-dialog-content>
+    <p><strong>Director:</strong> {{ data.director }}</p>
+    <p><strong>Actors:</strong> {{ data.actors }}</p>
+    <p><strong>Duration:</strong> {{ data.duration }} min</p>
+    
+    <p><strong>Rating:</strong> </p>
+    <ng-container *ngFor="let star of stars; let i = index">
+        <mat-icon *ngIf="i < filledStar" class="filled-star">star_rate</mat-icon> 
+        <mat-icon *ngIf="i === filledStar && halfStar === 1" class="half-star">star_half</mat-icon>
+        <mat-icon *ngIf="i >= filledStar + halfStar" class="empty-star">star_border</mat-icon>
+      </ng-container>
+  </mat-dialog-content>
+</div>
+
+<mat-dialog-actions align="end">
+  <a href="#" mat-button mat-dialog-close>View more...</a>
+</mat-dialog-actions>
