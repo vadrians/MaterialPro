@@ -14,21 +14,23 @@ export class MovieService {
     this.usersUrl = 'http://localhost:8080/movies';
   }
   
-
-  
   getMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.usersUrl);
+  }
+  
+  getMovieById(id: string): Observable<Movie> {
+    return this.http.get<Movie>(`${this.usersUrl}/${id}`);
   }
 
   addMovie(movie: Movie): Observable<Movie> {
     return this.http.post<Movie>(this.usersUrl, movie);
   }
   
-  updateMovie(id: number, movie: Movie): Observable<Movie> {
+  updateMovie(id: string, movie: Movie): Observable<Movie> {
     return this.http.put<Movie>(`${this.usersUrl}/${id}`, movie);
   }
   
-  deleteMovie(id: number): Observable<void> {
+  deleteMovie(id: string): Observable<void> {
     return this.http.delete<void>(`${this.usersUrl}/${id}`);
   }
 }
