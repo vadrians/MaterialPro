@@ -17,5 +17,6 @@
 </div>
 
 <mat-dialog-actions align="end">
-  <a href="#" mat-button mat-dialog-close>View more...</a>
+  <a [routerLink]="['/cinema/movie/details/', data.id]" mat-button mat-dialog-close>View more...</a>
 </mat-dialog-actions>
+
